@@ -1,4 +1,6 @@
-# Cluster Optimization for Text Embeddings
+# Cluster Optimization
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikit-learn) ![License: MIT](https://img.shields.io/github/license/Baho73/cluster-optimization) for Text Embeddings
 
 End-to-end clustering pipeline for 45K text embeddings: data cleaning with ensemble outlier detection, optimal cluster count selection using 4 methods, and final KMeans clustering with t-SNE visualization.
 
