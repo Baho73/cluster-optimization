@@ -27,15 +27,15 @@ Raw Data (45,895 texts with embeddings)
 │  └─ Davies-Bouldin Index        │
 │  → Median of 4 methods          │
 └─────────────────────────────────┘
-    │  k = 57
+    │  k = 29 (median; metrics split 2 vs 57)
     ▼
 ┌─────────────────────────────────┐
 │  3. Final Clustering            │
-│  ├─ KMeans (k=57, k-means++)   │
+│  ├─ KMeans (k=29, k-means++)   │
 │  ├─ t-SNE 2D visualization     │
 │  └─ Cluster analysis & export  │
 └─────────────────────────────────┘
-    │  57 clusters with centroids
+    │  29 clusters with centroids
     ▼
   Output CSV
 ```
@@ -63,13 +63,15 @@ Four standard methods evaluate cluster counts from 2 to 80:
 | Silhouette Analysis | 2 |
 | Calinski-Harabasz Index | 57 |
 | Davies-Bouldin Index | 57 |
-| **Final (median)** | **57** |
+| **Final (median of the four)** | **29** |
+
+> The four metrics split sharply: compactness metrics (elbow, silhouette) point to ~2 broad clusters, while separation metrics (Calinski-Harabasz, Davies-Bouldin) point to ~57 finer ones. The notebook takes the median — `int(np.median([2, 2, 57, 57])) = 29` — as a neutral heuristic. The disagreement is itself the signal: the data is hierarchical (a few large semantic groups with finer structure inside), so in practice `k` should be driven by the downstream task, not by an automatic aggregate.
 
 ## Results
 
-- **57 clusters** from 43,304 text embeddings (3,072-dimensional)
-- Cluster sizes range from ~100 to ~1,600 items
-- t-SNE visualization confirms well-separated cluster structure
+- **29 clusters** (median heuristic) from 43,304 text embeddings (3,072-dimensional)
+- t-SNE is used for 2D visualization only; clustering runs in the original 3,072-dim space
+- The optimal-k metrics disagree (see above), so 29 is a heuristic midpoint, not a validated optimum
 
 ## Tech Stack
 
